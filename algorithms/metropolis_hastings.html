@@ -6,50 +6,68 @@ layout: post
 
 <h1>Metropolis Hastings</h1>
 
+<p>
 The Metropolis-Hastings (MH) algorithm is a sampling algorithm that generates samples from a target distribution
 \(\pi(\cdot)\). MH is most effective in the case
 where \(\pi(\cdot)\) is intractable. Let’s express \(\pi(\cdot)\) as the following fraction,
+</p>
 
 $$ \pi(\cdot) = \frac{f(\cdot)}{K} $$
 
+<p>
 where \(f(·)\) is some tractable density function and \(K\) is an intractable normalizing constant. MH enables us to
 sample from \(\pi(\cdot)\) without knowing anything about the intractable normalizing constant \(K\)!
+</p>
 
+<p>
 The idea behind MH is to construct a Markov Chain whose stationary distribution is \(\pi(\cdot)\). How do we do this? From Markov Chain theory we know that
 if a Markov Chain is reversible, the detailed balance equation holds,
+</p>
 
 $$\pi(x)p(x,y) = \pi(y)p(y,x)$$
 
+<p>
 where \(\pi(\cdot)\) is the stationary distribution and \(p(x,y)\) is the transition kernel.
 Hence, if we can find a transition kernel \(p(x,y)\) which satisfies this reversibility
 condition, we can sample from the target distribution \(\pi(\cdot)\).
+</p>
 
+<p>
 We start by defining some tractable proposal distribution \(q(x,y),\) which generates a proposal \(y\) given some
 current state \(x\) (this is something you pick). Since \(q(x,y)\) is a transition kernel, does it satisfy the reversibility condition? Let’s
 derive a general solution. Assume \(q(x,y)\) does not satisfy the reversibility condition (if it does, then we just have the Metropolis algorithm). We have the
 following,
+</p>
 
 $$\pi(x)q(x,y) > \pi(y)q(y,x) \hspace{1cm} (w.l.g)$$
 
+<p>
 An intuitive interpretation of what this equation is saying is basically we are
 moving from state \(x\) to state \(y\) more than we are vice versa; in short, detailed
 balance is not satisfied. To correct this, we introduce a probability \(\alpha(x,y)\) that
 the move is actually made,
+</p>
 
 $$\pi(x)q(x,y){\color{ocre}\alpha(x,y)} = \pi(y)q(y,x)$$
 
+<p>
 Rearranging we obtain,
+</p>
 
 $$\alpha(x,y) = \frac{\pi(y)q(y,x)}{\pi(x)q(x,y)}$$
 
+<p>
 Reiterating, we interpret \(\alpha(x,y)\) as the probability of moving from state \(x\) to
 state \(y.\) Since it is a probability, it cannot exceed 1 so the final definition is,
+</p>
 
 $$\alpha(x,y) = \min [\frac{\pi(y)q(y,x)}{\pi(x)q(x,y)}, 1]$$
 
+<p>
 Note that \(\alpha(x,y)\) is the transition kernel \(p(x,y)\) that we were after! It satisfies
 the detailed balance equation by definition; however, does it deal with the pesky
 intractable normalizing constant \(K?\) Yes! We have that,
+</p>
 
 $$
 \begin{align*}
@@ -58,7 +76,9 @@ $$
 \end{align*}
 $$
 
+<p>
 So we no longer have to worry about \(K\) (yay!). Ergo, we can simply use \(\alpha(x,y)\)
 as our transition kernel for our Markov Chain and rest assured that as long as
 we obtain enough samples, they will be distributed according to the stationary
 distribution; voila, we have samples from the intractable distribution \(\pi(\cdot)\)!
+</p>
