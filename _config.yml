@@ -21,10 +21,11 @@
 title: Kevin Yang
 email: kevinyang10@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Personal Website
+#  Personal Website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  keviny2
+linkedin_username: kevin-yang-72020b166
 
 # Build settings
 include: 
