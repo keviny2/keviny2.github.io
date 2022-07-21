@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Importance Sampling</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="importance_sampling.tex"> 
+<link rel="stylesheet" type="text/css" href="importance_sampling.css"> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">Importance Sampling</h2>
+<div class="author" ></div><br />
+<div class="date" ><span 
+class="cmr-12">July 20, 2022</span></div>
+   </div>
+<!--l. 16--><p class="indent" >   Importance sampling is an approximation method that aims at proposing a new
+distribution to sample from that has higher density on areas that contribute
+more to the expectation. That was a mouthful. Let&#8217;s break that into smaller
+chunks.<br 
+class="newline" /><br 
+class="newline" />   First, let&#8217;s quickly get this out of the way: importance sampling is an
+<span 
+class="cmbx-10">approximation method</span>, not a sampling method. There is no real sampling
+procedure defined here.<br 
+class="newline" /><br 
+class="newline" />   Great! Now that that&#8217;s out of the way, the next thing is to introduce
+two distributions: the <span 
+class="cmti-10">target distribution </span><span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>) and the <span 
+class="cmti-10">proposal distribution</span>
+<span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>). The target distribution describes the true underlying distribution of
+the data, whereas the proposal distribution is the new distribution we will
+sample from. In importance sampling, we want to control how often we
+sample certain values. As stated, we usually want <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) to have high density
+on areas that contribute more to the expectation. What does this exactly
+mean?<br 
+class="newline" /><br 
+class="newline" />   Let&#8217;s turn our attention to Figure 1. <span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>) is the true underlying distribution of
+the function <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>) and <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) is our proposal distribution. Our goal is to characterize
+the function <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>) (e.g. estimate the expectation). We can see that <span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>) will have
+trouble sampling from the right side of <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>), which is where all the action is
+happening. Meanwhile, <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) will do a pretty good job at sampling from
+the important areas (where the action is happening); hence, <span 
+class="cmbx-10">importance</span>
+<span 
+class="cmbx-10">sampling</span>.
+<!--l. 24--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-21"></a>
+                                                                  
+
+                                                                  
+<!--l. 26--><p class="noindent" ><img 
+src="intuition.png" alt="PIC"  
+width="36" height="36" >
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">A good proposal distribution</span></div><!--tex4ht:label?: x1-21 -->
+                                                                  
+
+                                                                  
+<!--l. 28--><p class="indent" >   </div><hr class="endfigure">
+                                                                  
+
+                                                                  
+<!--l. 32--><p class="indent" >   Now it&#8217;s important to note that, in the long run, it really doesn&#8217;t matter which
+distribution we use, because Monte Carlo estimates are unbiased. However, it is <span 
+class="cmbx-10">also</span>
+important to note that, if we sample from <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) instead of <span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>), our estimate will have
+a smaller variance, resulting in higher accuracy.
+<!--l. 34--><p class="indent" >
+<table 
+class="align-star">
+                      <tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">I</span><sub>
+<span 
+class="cmmi-7">n</span></sub>) = <img 
+src="importance_sampling0x.png" alt="1
+n-"  class="frac" align="middle"><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<img 
+src="importance_sampling1x.png" alt="p(x)
+q(x)"  class="frac" align="middle">)<span 
+class="cmmi-10">,</span></td>                      <td 
+class="align-even"></td>                      <td 
+class="align-label"></td></tr></table>
+<!--l. 38--><p class="indent" >   where <span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">I</span><sub><span 
+class="cmmi-7">n</span></sub>) is the variance of our samples using <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) as our proposal
+distribution. As an aside, in some applications, importance sampling is used
+to solve the problem of sampling from an intractable density. In this case,
+typically <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) is chosen to be as close to the true (but intractable) distribution
+<span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>).<br 
+class="newline" /><br 
+class="newline" />   Now that we have the big idea, how do we do the derivation? It&#8217;s actually really
+simple! We&#8217;ll start with the expectation, then multiplying by <img 
+src="importance_sampling2x.png" alt="q(x)
+q(x)" > and finally
+applying Monte Carlo approximations,
+<!--l. 42--><p class="indent" >
+                                                                  
+
+                                                                  
+<table 
+class="align-star">
+                    <tr><td 
+class="align-odd"><span 
+class="cmmi-10">E</span>(<span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>))</td>                    <td 
+class="align-even"> = <span 
+class="cmex-10">&#x222B;</span>
+  <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">dx</span></td>                           <td 
+class="align-label"></td>                    <td 
+class="align-label">
+                    </td></tr><tr><td 
+class="align-odd"></td>                           <td 
+class="align-even"> = <span 
+class="cmex-10">&#x222B;</span>
+  <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<img 
+src="importance_sampling3x.png" alt="p(x)-
+q(x)"  class="frac" align="middle"><span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">dx</span></td>                       <td 
+class="align-label"></td>                    <td 
+class="align-label">
+                    </td></tr><tr><td 
+class="align-odd"></td>                           <td 
+class="align-even"> <span 
+class="cmsy-10">&#x2248;</span><img 
+src="importance_sampling4x.png" alt="1-
+n"  class="frac" align="middle"><span 
+class="cmex-10">&#x2211;</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span><sub>
+<span 
+class="cmmi-7">i</span></sub>)<img 
+src="importance_sampling5x.png" alt="p(xi)-
+q(xi)"  class="frac" align="middle"></td>                    <td 
+class="align-label"></td>                    <td 
+class="align-label">
+                    </td></tr><tr><td 
+class="align-odd"></td>                           <td 
+class="align-even"> = <img 
+src="importance_sampling6x.png" alt="1
+n-"  class="frac" align="middle"><span 
+class="cmex-10">&#x2211;</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span><sub>
+<span 
+class="cmmi-7">i</span></sub>)<span 
+class="cmmi-10">w</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>)</td>                    <td 
+class="align-label"></td>                    <td 
+class="align-label"></td></tr></table>
+<!--l. 48--><p class="indent" >   where
+<table 
+class="align-star">
+                     <tr><td 
+class="align-odd"><span 
+class="cmmi-10">w</span>(<span 
+class="cmmi-10">x</span>) = <img 
+src="importance_sampling7x.png" alt="p(x)
+----
+q(x)"  class="frac" align="middle"><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;       x</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">~ </span><span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>)</td>                     <td 
+class="align-even"></td>                     <td 
+class="align-label"></td></tr></table>
+                                                                  
+
+                                                                  
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Notes</h3>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) is the proposal distribution
+     </li>
+     <li class="itemize">essentially multiply by <img 
+src="importance_sampling8x.png" alt="q(x)
+q(x)"  class="frac" align="middle">
+     <table 
+class="align-star">
+   <tr><td 
+class="align-odd"><span 
+class="cmmi-10">E</span>(<span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>))</td>   <td 
+class="align-even"> = <span 
+class="cmex-10">&#x222B;</span>
+  <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">dx</span></td>                                                                  <td 
+class="align-label"></td>  <td 
+class="align-label">
+  </td></tr><tr><td 
+class="align-odd"></td>           <td 
+class="align-even"> = <span 
+class="cmex-10">&#x222B;</span>
+  <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<img 
+src="importance_sampling9x.png" alt="p(x)-
+q(x)"  class="frac" align="middle"><span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">dx</span></td>                                                             <td 
+class="align-label"></td>  <td 
+class="align-label">
+  </td></tr><tr><td 
+class="align-odd"></td>           <td 
+class="align-even"> <span 
+class="cmsy-10">&#x2248;</span><img 
+src="importance_sampling10x.png" alt="1-
+n"  class="frac" align="middle"><span 
+class="cmex-10">&#x2211;</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span><sub>
+<span 
+class="cmmi-7">i</span></sub>)<img 
+src="importance_sampling11x.png" alt="p(xi)-
+q(xi)"  class="frac" align="middle"></td>                                                                     <td 
+class="align-label"></td>   <td 
+class="align-label">
+   </td></tr><tr><td 
+class="align-odd"></td>             <td 
+class="align-even"> = <img 
+src="importance_sampling12x.png" alt="1
+--
+n"  class="frac" align="middle"><span 
+class="cmex-10">&#x2211;</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span><sub>
+<span 
+class="cmmi-7">i</span></sub>)<span 
+class="cmmi-10">w</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>)<span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;              w</span>(<span 
+class="cmmi-10">x</span>) = <img 
+src="importance_sampling13x.png" alt="p(x)
+----
+q(x)"  class="frac" align="middle"><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmmi-10">&#x00A0;       x</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">~ </span><span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>)</td>   <td 
+class="align-label"></td>   <td 
+class="align-label"> </td></tr> </table>
+     </li>
+     <li class="itemize">can enhance accuracy by choosing a good <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>)
+                                                                  
+
+                                                                  
+     <table 
+class="align-star">
+                                <tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">I</span><sub>
+<span 
+class="cmmi-7">n</span></sub>) = <img 
+src="importance_sampling14x.png" alt="-1
+n"  class="frac" align="middle"><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<img 
+src="importance_sampling15x.png" alt="p(x)
+ q(x)"  class="frac" align="middle">)</td>                                <td 
+class="align-even"></td>                                <td 
+class="align-label"></td></tr></table>
+     </li>
+     <li class="itemize">want to choose <span 
+class="cmmi-10">q</span>(<span 
+class="cmmi-10">x</span>) large where <span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">x</span>) is large, because that&#8217;s where all the
+     action is happening</li></ul>
+    
+</body></html> 
+
+                                                                  
+
+

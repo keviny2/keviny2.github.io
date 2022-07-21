@@ -1,0 +1,28 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{xcolor}
+\definecolor{ocre}{RGB}{243,102,25}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Posterior Predictive Distribution}
+
+
+\begin{document}
+\maketitle 
+
+\section{Notes}
+\begin{itemize}
+\item Prior predictive: Before we see the data
+	\begin{itemize}
+	\item $p(y) = \int_{\theta \in \Theta} p(y,\theta)d\theta = \int_{\theta \in \Theta} p(y \mid \theta)p(\theta)d\theta$
+	\end{itemize}
+\item Posterior predictive: After we see the data
+	\begin{itemize}
+	\item $p(y'\mid y)=\int p(y',\theta,\mid y)d\theta = \int p(y' \mid \theta,y)p(\theta \mid y)d\theta$
+	\item Notice that $p(y' \mid \theta, y) = p(y' \mid \theta)$ is the likelihood of the new observation, since the new observation $y'$ is independent of the data if we have the model defined by $\theta$. Moreover, $p(\theta \mid y)$ is the posterior distribution. Therefore, the posterior predictive distribution is the product between the likelihood and posterior integrating over the parameter values.
+	\end{itemize}
+\end{itemize}
+\end{document}
