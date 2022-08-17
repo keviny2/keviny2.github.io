@@ -2,12 +2,13 @@
 layout: post
 ---
 
+<link rel="stylesheet" href="../css/article.css">
+
 {% include mathjax.html %}
 
-<h2>Tree-Based Methods</h2>
-Tree-based methods are a great way to learn patterns in data. They are extremely interpretable, making them a useful tool for communicating findings in data science applications. Moreover, extensions to simpler tree-based methods exist which are competitive in prediction accuracy. We first begin with the basics through an example.
-<br>
-<br>
+<h2>Decision Trees</h2>
+Decision Trees are a great way to learn patterns in data. They are extremely interpretable, making them a useful tool for communicating findings in data science applications. Moreover, extensions to simpler tree-based methods exist which are competitive in prediction accuracy. We first begin with the basics through an example.
+
 <h1>Regression and Classification Trees</h1>
 Assume we are trying to predict the salary of a baseball player based on two
 characteristics: the number of years they played in the major leagues, and the
@@ -15,10 +16,9 @@ number of hits they had last season. A possible tree that we might end up
 with can be seen in Figure 1. There are two places where the tree is split:
 Years<4.5 and Hits<117.5. These are the tree’s internal nodes, and we call the
 split conditions Years<4.5 and Hits<117.5 ’splitting rules’.
-<br>
-<br>
+
 <img src="regression_tree.png" width=350 style="display:block; margin-left:auto; margin-right:auto;">
-<br>
+
 How exactly do we make a prediction given a new observation? Consider a
 player named Bob who has played 6 years in the major leagues and got 96 hits
 last season. According to the tree, the first split checks whether the number
@@ -30,10 +30,9 @@ rule’ which asks if the number of hits this player got from last season is les
 than 117.5. Bob had 96 hits last season; thus, we travel to the left and get to
 the terminal or leaf node from which we make our prediction. In this case, we
 predict Bob to make \(e^6 * 1000 ≈ 403,429\) dollars.
-<br>
-<br>
+
 <img src="predictor_space.png" width=350 style="display:block; margin-left:auto; margin-right:auto;">
-<br>
+
 The next important concept to address is how a tree partitions the predictor
 space. Examining Figure 2, we see three regions annotated by R1, R2, R3.
 We denote observations within each region as \(y\{R_i\} = \{y_i
@@ -43,9 +42,9 @@ take a quantitative statistic such as the mean of all data points within the
 region, whereas for classification trees, we take a statistic over qualitative data
 such as the mode. For instance, a possible statistic for R1 could be the mean
 of all observations that lie in R1, \(\frac{1}{n}\sum_{i=1}^n y_i\)
-<br>
-<br>
+
 <h1>Pruning</h1>
+
 An important question to ask when building a tree is when to stop. Theoretically, a tree can have a terminal node for every single data point in the entire training set and obtain 100% training accuracy; in this case, we will almost certainly overfit to the training set. Pruning is a technique that mitigates this
 problem by decreasing the number of terminal nodes by removing branches.
 Naturally, we should remove branches such that the error rate increases by a
@@ -64,12 +63,9 @@ a grid search to identify values of \(\alpha\) which result in a sequence of suc
 shallower trees. Then, cross validation can be performed on each individual tree
 to determine which is optimal. See Figure 3 for an example of pruning.
 
-<br>
-<br>
 <h1>Pros vs. Cons of Trees</h1>
 As mentioned in the beginning, trees are easy to interpret. Furthermore, the
 way trees make predictions is thought to mirror human decision-making. Trees
 can also be displayed graphically, a desirable trait for presentations in real world applications. Despite these advantages, trees suffer from lower prediction accuracy, high variance, and lack of robustness (a small change in the data leads to a big change in the resulting tree). See <a href="/algorithms/tree_extensions/article.html">this article</a> if you are interested in learning about extensions to tree-based methods which address these problems.
-<br>
-<br>
+
 <img src="pruning.png" width=550 style="display:block; margin-left:auto; margin-right:auto;">

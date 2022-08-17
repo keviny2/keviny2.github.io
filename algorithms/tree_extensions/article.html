@@ -2,6 +2,8 @@
 layout: post
 ---
 
+<link rel="stylesheet" href="../css/article.css">
+
 {% include mathjax.html %}
 
 <h2>Extensions to Tree-methods</h2>
@@ -19,15 +21,12 @@ $$
 \end{align*}
 $$
 
-<br>
 <h1>Random Forests</h1>
 A drawback of Bagging lies in the fact that each of the B trees are correlated.
 This is because often certain predictors are very effective, so splits across trees
 inevitably use the same predictor; this makes trees not completely independent.
 Random Forests decorrelate trees by only considering a random fraction of predictors at each split (typically \(\sqrt{p}\) where p is the total number of predictors).
 
-<br>
-<br>
 <h1>Boosting</h1>
 Boosting takes on a different flavor than Bagging and Random Forests. Rather
 than fit multiple trees on bootstrapped datasets, Boosting instead learns ‘slowly’
@@ -38,15 +37,11 @@ they are not correlated. Boosting uses hyperparameters \(\lambda\), which contro
 amount of contribution each individual tree has in the final prediction, and an
 integer value denoting the depth for each decision tree. See Algorithm 1 for a
 description.
-<br>
-<br>
+
 <img src="algorithm.png" width=650 style="display:block; margin-left:auto; margin-right:auto;">
-<br>
-<br>
+
 <h1>Random Forest vs. Boosting</h1>
 We compare the performances of Random Forests and Boosting in Figure 4. In this application, Boosting with depth=1,2 outperform Random Forests.
 
-<br>
-<br>
 <img src="tree_extension.png" width=450 style="display:block; margin-left:auto; margin-right:auto;">
 
