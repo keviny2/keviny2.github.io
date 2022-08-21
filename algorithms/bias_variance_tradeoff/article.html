@@ -8,7 +8,7 @@ layout: post
 
 <h2>Bias-Variance Tradeoff</h2>
 
-The most important aspect of a machine learning model is its prediction accuracy, measured by the test/generalization error. Intuitively, the test error of an observation is simply the distance between a model's predicted value and the ground truth. Mathematically, the test error can be decomposed into three fundamental quantities (we use MSE as the distance metric because it is easy to interpret and well known),
+The most important aspect of a machine learning model is its prediction accuracy, measured by the test/generalization error. Intuitively, the test error is simply the expected distance between a model's predicted value and the actual value for all possible observations. Mathematically, the test error can be decomposed into three fundamental quantities (we use MSE as the distance metric because it is easy to interpret and well known),
 
 \begin{align}
     \mathrm{Err}(x_0) &= \mathbb{E}[(Y-\hat{f}(x_0))^2 \mid X=x_0]\\
