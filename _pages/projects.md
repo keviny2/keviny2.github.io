@@ -25,7 +25,7 @@ feature_row_2:
       btn_class: "btn--info"
     - image_path: /assets/images/projects/vancouver_temperature_forecasting.png
       url: "https://github.com/keviny2/Vancouver-Temperature-Forecasting"
-      title: "Vancouver Temperature Forecasting"
+      title: "Vancouver Temperature Time Series Analysis"
       excerpt: "A time series analysis on daily climate data in Vancouver between Jan. 1, 2003 - Mar. 31, 2020. Performed a Seasonal Mann-Kendall Trend Test to check for the presence an upward trend in mean temperature. Applied Holt Winters Exponential Smoothing to forecast future temperatures."
       btn_class: "btn--info"
 ---
