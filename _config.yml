@@ -31,10 +31,11 @@ linkedin_username: keyang2
 # Build settings
 include: 
     - _static
-theme: minima
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 gems: ["jemoji"]
 
