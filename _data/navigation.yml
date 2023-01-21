@@ -1,0 +1,13 @@
+main:
+  - title: "Posts"
+    url: /posts/
+  - title: "Machine Learning"
+    url: /machine-learning/
+  - title: "Projects"
+    url: /projects/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+  - title: "About"
+    url: /about/
