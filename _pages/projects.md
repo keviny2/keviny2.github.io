@@ -17,7 +17,6 @@ feature_row:
       title: "MethylationDPGMM"
       excerpt: "Dirichlet Process Gaussian Mixture Model (DPGMM) for multi-modal pan-cancer stratification using DNA methylation and RNA expression."
       btn_class: "btn--info"
-feature_row_2:
     - image_path: /assets/images/projects/Regression_App.png
       url: "https://github.com/keviny2/Data-Science-Regression-Application"
       title: "Regression Application"
@@ -31,4 +30,3 @@ feature_row_2:
 ---
 
 {% include feature_row id="feature_row" type="left" %}
-{% include feature_row id="feature_row_2" type="left" %}

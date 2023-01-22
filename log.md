@@ -1,5 +1,6 @@
 ### 01/20/22
 - Updated 1-2 sentence summary
+- GitHub pages not same as local
 
 ### 01/05/22
 - Working on including CV as one of the links in author sidebar
