@@ -2,6 +2,11 @@
 layout: single
 permalink: /projects/
 feature_row:
+    - image_path: /assets/images/projects/summarized_experiment.svg
+      url: "https://github.com/BiocPy/SummarizedExperiment"
+      title: "SummarizedExperiment"
+      excerpt: "A container class to represent genomic experiments in Python; follows Bioconductor's [SummarizedExperiment](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html)."
+      btn_class: "btn--info"
     - image_path: /assets/images/projects/LiquidBayes.png
       url: "https://github.com/Roth-Lab/LiquidBayes/"
       title: "LiquidBayes"
@@ -21,11 +26,6 @@ feature_row:
       url: "https://github.com/keviny2/Data-Science-Regression-Application"
       title: "Regression Application"
       excerpt: "A Python GUI app developed using PyQt5 software. Uses statsmodels to perform different types of regressions. Visualizes regressions with matplotlib. User friendly UI that is easy to use and pleasant to look at."
-      btn_class: "btn--info"
-    - image_path: /assets/images/projects/vancouver_temperature_forecasting.png
-      url: "https://github.com/keviny2/Vancouver-Temperature-Forecasting"
-      title: "Vancouver Temperature Time Series Analysis"
-      excerpt: "A time series analysis on daily climate data in Vancouver between Jan. 1, 2003 - Mar. 31, 2020. Performed a Seasonal Mann-Kendall Trend Test to check for the presence an upward trend in mean temperature. Applied Holt Winters Exponential Smoothing to forecast future temperatures."
       btn_class: "btn--info"
 ---
 
