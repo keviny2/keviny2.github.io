@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Kevin Yang"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Data scientist. Bioinformatician. Researcher. Software engineer. Bookworm."
+  bio    : "Husband and father who happens to like data and software."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
