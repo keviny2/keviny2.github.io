@@ -11,6 +11,7 @@
 - Gospel
 - Soteriology
 - Trinity
+- Church History
 
 ## ML
 - Machine learning
