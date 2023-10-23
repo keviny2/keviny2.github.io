@@ -1,0 +1,72 @@
+---
+title: "word2vec"
+date: 2023-10-20
+categories:
+    - ML concepts
+tags:
+    - Machine learning
+    - NLP
+excerpt: "Generate word vector representations"
+---
+
+<link rel="stylesheet" href="/assets/css/article.css">
+
+{% include mathjax.html %}
+
+<p>
+Understanding how words relate to each other is crucial in natural language processing (NLP). In machine learning, these relationships also need to be quantified.
+word2vec aims to address both concerns by learning word embeddings using neural networks. It does this by learning vector representations for each word in a vocabulary,
+such that it is good at predicting other words appearing in its context.
+</p>
+
+<p>
+Two model architectures are put forward in the original word2vec paper: skip-gram and continuous bag of words (CBOW). We will focus on skip-gram in this article.
+</p>
+
+<h2>Skip-gram</h2>
+
+<p>
+Skip-gram aims to learn word relationships by analyzing co-occurrence patterns, identifying which words frequently occur together within a given corpus of text.
+</p>
+
+<p>
+Let \(w=\{w_1, w_2, \ldots, w_T\}\) be our corpus of text. For each word, we attempt to predict the surrounding words in a window of "radius" \(m\).
+For example, if our window size is 2, and our word of interest is \(w_{10}\), we try to predict \(w_8, w_9, w_{11},\) and \(w_{12}\) given \(w_{10}\).
+We refer to the word of interest (in this case, \(w_{10}\)) as the 'center word' and the surrounding words as 'context words'. Each word has <i>two</i> vector representations -
+a center word representation and a context word representation.
+</p>
+
+To illustrate, assume our text corpus is "I love learning NLP". Then,
+</p>
+
+$$w_1=\text{"I"}, w_2=\text{"love"}, w_3=\text{"learning"}, w_4=\text{"NLP"}.$$
+
+<p>
+As mentioned, each word has two vector representations. Let \(U\) correspond to context word representations and let \(V\) correspond to center word representations.
+These matrices could look something like this,
+</p>
+
+$$U=\begin{bmatrix}0.4 & 0.3 & 7 & 3\\0.1 & 5 & 0.4 & 6\end{bmatrix}$$
+
+$$V=\begin{bmatrix}0.3 & 0.1 & 0.7 & 2\\5 & 2 & 0.9 & 0.4\end{bmatrix}$$
+
+<p>
+where each column corresponds to a single word in the vocabulary (the dimensionality of each word vector is arbitrary).
+</p>
+
+<p>
+The objective is to maximize the probability of any context word given the current center word. The objective function is,
+</p>
+
+$$J'(\theta)=\Pi_{t=1}^T\Pi_{-m\leq j\leq m}p(w_{t+j} \mid w_t;\theta)$$
+
+with the negative log likelihood being,
+
+$$J(\theta)=-\frac{1}{T}\Sigma_{t=1}^T\Sigma_{-m\leq j\leq m}\log{p(w_{t+j}\mid w_t)}.$$
+
+\(p(w_{t+j}\mid w_t)\) is some measure of similarity between words. A common choice for it is the softmax,
+
+$$p(w_{t+j}\mid w_t)=\frac{exp(u_o^Tv_c)}{\Sigma_{w=1}^vexp(u_w^Tv_c)},$$
+
+where \(o\) is the corresponding index in \(U\) for \(w_{t+j}\) and \(c\) is the corresponding index in \(V\) for \(w_t\). Therefore, \(v_c\) and \(u_o\) are the
+"center" and "context" vectors for \(w_{t}\) and \(w_{t+j}\), respectively. Using this framework, we train a neural network to minimize the negative log likelihood.
