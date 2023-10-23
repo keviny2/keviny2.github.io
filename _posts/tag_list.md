@@ -16,3 +16,4 @@
 ## ML
 - Machine learning
 - Bayesian
+- NLP

@@ -54,8 +54,11 @@ $$V=\begin{bmatrix}0.3 & 0.1 & 0.7 & 2\\5 & 2 & 0.9 & 0.4\end{bmatrix}$$
 where each column corresponds to a single word in the vocabulary (the dimensionality of each word vector is arbitrary).
 </p>
 
+<h3>Training</h3>
+
 <p>
-The objective is to maximize the probability of any context word given the current center word. The objective function is,
+Given a window size \(m\) and a text corpus \(w=\{w_1, w_2, \ldots, w_T\}\), the objective is to maximize the probability of any context word given the current center word.
+We do this for <i>all</i> words in the text corpus. Hence, the objective function is,
 </p>
 
 $$J'(\theta)=\Pi_{t=1}^T\Pi_{-m\leq j\leq m}p(w_{t+j} \mid w_t;\theta)$$
@@ -64,9 +67,12 @@ with the negative log likelihood being,
 
 $$J(\theta)=-\frac{1}{T}\Sigma_{t=1}^T\Sigma_{-m\leq j\leq m}\log{p(w_{t+j}\mid w_t)}.$$
 
-\(p(w_{t+j}\mid w_t)\) is some measure of similarity between words. A common choice for it is the softmax,
+<p>
+The first sum (\(\Sigma_{t=1}^T\)) iterates over all words in the text corpus, whereas the second sum (\(\Sigma_{-m\leq j\leq m}\)) iterates over all the context words in the window of "radius" \(m\). 
+\(p(w_{t+j}\mid w_t)\) is some measure of similarity between words. A common choice is the softmax,
+</p>
 
 $$p(w_{t+j}\mid w_t)=\frac{exp(u_o^Tv_c)}{\Sigma_{w=1}^vexp(u_w^Tv_c)},$$
 
-where \(o\) is the corresponding index in \(U\) for \(w_{t+j}\) and \(c\) is the corresponding index in \(V\) for \(w_t\). Therefore, \(v_c\) and \(u_o\) are the
-"center" and "context" vectors for \(w_{t}\) and \(w_{t+j}\), respectively. Using this framework, we train a neural network to minimize the negative log likelihood.
+where \(o\) is the index in the context vector matrix \(U\) for word \(w_{t+j}\) and \(c\) is the index in the center vector matrix \(V\) for word \(w_t\). Therefore, \(v_c\) and \(u_o\) are the
+"center" and "context" vectors for \(w_{t}\) and \(w_{t+j}\), respectively. Using this framework, we can train a neural network to minimize the negative log likelihood.
