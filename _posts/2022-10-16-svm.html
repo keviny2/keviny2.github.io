@@ -14,7 +14,7 @@ excerpt: "Effective classification method"
 
 Support Vector Machines (SVMs) are a popular and effective machine learning method for classification problems. However, before diving into SVMs, we first turn our attention to the Maximal Margin Classifier (MMC) and Support Vector Classifier (SVC) to gain intuition on some important concepts.
 
-<h1>Maximal Margin Classifier</h1>
+<h2>Maximal Margin Classifier</h2>
 We begin with the MMC. In simplest terms, the MMC is a line which separates the training data into two classes. This is most clearly illustrated by way of example.
 
 <img src="/assets/images/machine_learning/MMC.png" width="950">
@@ -29,7 +29,7 @@ The left plot in the figure above shows three different lines that separate the 
 
 which can look intimidating at first, but is actually simpler than it looks. Equation 9.11 ensures that each observation lies on the correct side of the hyperplane because \(y_i\) is either -1 or 1 If \(M\) is nonnegative. In conjunction with equation 9.9 the resulting hyperplane will maximize the distance between the hyperplane and the support vectors. Equation 9.10 is primarily for interpretive reasons that we will gloss over for now. 
 
-<h1>Support Vector Classifier</h1>
+<h2>Support Vector Classifier</h2>
 Unfortunately, the MMC suffers from high sensitivity to individual observations. In the figure below, the addition of a single blue observation drastically alters the MMC (left plot original, right plot with additional observation). This is because MMCs perfectly separate all training observations, forcing the MMC to accommodate for observations that may potentially be outliers! This leads to overfitting which reduces MMCs ability to generalize. 
 
 <img src="/assets/images/machine_learning/MMC_sensitive.png" width="950">
@@ -47,7 +47,7 @@ Aside from the new parameter \(C\), we have \(\epsilon_1, \ldots, \epsilon_n\) w
 
 <img src="/assets/images/machine_learning/SVC.png" width="650">
 
-<h1>Support Vector Machines</h1>
+<h2>Support Vector Machines</h2>
 Now we are finally ready to tackle SVMs. In many applications, observations cannot be separated using a linear decision boundary. SVMs circumvent this problem by finding a non-linear decision boundary by expanding the feature space using non-linear kernels. Going back to SVCs, it can be shown that the solution to SVCs only involves inner products between observations (ignore all the math for now). In this case, the inner product is the 'kernel' of the SVC and can be expressed as \(K(x_i,x_{i'})=\sum_{j=1}^p x_{ij}x_{i'j}\). Importantly, the inner product is a <em>linear</em> kernel, which restricts the SVC to only linear decision boundaries. As mentioned before, all the SVM does differently is use non-linear kernels such as,
 
 \begin{align}

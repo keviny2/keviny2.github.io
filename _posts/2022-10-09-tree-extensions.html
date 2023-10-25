@@ -12,7 +12,7 @@ excerpt: "Extensions of decision trees"
 
 {% include mathjax.html %}
 
-<h1>Bagging</h1>
+<h2>Bagging</h2>
 As mentioned in <a href="/machine_learning/decision_trees">the previous article</a>, tree-methods suffer from high variance. In statistics, we
 know that averaging a set of observations reduces variance. Bagging leverages
 this fact by generating ‘additional’ datasets using bootstrapping and fitting an
@@ -26,13 +26,13 @@ $$
 \end{align*}
 $$
 
-<h1>Random Forests</h1>
+<h2>Random Forests</h2>
 A drawback of Bagging lies in the fact that each of the B trees are correlated.
 This is because often certain predictors are very effective, so splits across trees
 inevitably use the same predictor; this makes trees not completely independent.
 Random Forests decorrelate trees by only considering a random fraction of predictors at each split (typically \(\sqrt{p}\) where p is the total number of predictors).
 
-<h1>Boosting</h1>
+<h2>Boosting</h2>
 Boosting takes on a different flavor than Bagging and Random Forests. Rather
 than fit multiple trees on bootstrapped datasets, Boosting instead learns ‘slowly’
 in an additive fashion. Specifically, given the current model, we fit a decision
@@ -45,7 +45,7 @@ description.
 
 <img src="/assets/images/machine_learning/algorithm.png" width=650>
 
-<h1>Random Forest vs. Boosting</h1>
+<h2>Random Forest vs. Boosting</h2>
 We compare the performances of Random Forests and Boosting in Figure 4. In this application, Boosting with depth=1,2 outperform Random Forests.
 
 <img src="/assets/images/machine_learning/tree_extension.png" width=450>

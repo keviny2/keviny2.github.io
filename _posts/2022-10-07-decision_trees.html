@@ -14,7 +14,7 @@ excerpt: "Interpretable regression or classification method"
 
 Decision Trees are a great way to learn patterns in data. They are extremely interpretable, making them a useful tool for communicating findings in data science applications. Moreover, extensions to simpler tree-based methods exist which are competitive in prediction accuracy. We first begin with the basics through an example.
 
-<h1>Regression and Classification Trees</h1>
+<h2>Regression and Classification Trees</h2>
 Assume we are trying to predict the salary of a baseball player based on two
 characteristics: the number of years they played in the major leagues, and the
 number of hits they had last season. A possible tree that we might end up
@@ -48,7 +48,7 @@ region, whereas for classification trees, we take a statistic over qualitative d
 such as the mode. For instance, a possible statistic for R1 could be the mean
 of all observations that lie in R1, \(\frac{1}{n}\sum_{i=1}^n y_i\)
 
-<h1>Pruning</h1>
+<h2>Pruning</h2>
 
 An important question to ask when building a tree is when to stop. Theoretically, a tree can have a terminal node for every single data point in the entire training set and obtain 100% training accuracy; in this case, we will almost certainly overfit to the training set. Pruning is a technique that mitigates this
 problem by decreasing the number of terminal nodes by removing branches.
@@ -68,7 +68,7 @@ a grid search to identify values of \(\alpha\) which result in a sequence of suc
 shallower trees. Then, cross validation can be performed on each individual tree
 to determine which is optimal. See Figure 3 for an example of pruning.
 
-<h1>Pros vs. Cons of Trees</h1>
+<h2>Pros vs. Cons of Trees</h2>
 As mentioned in the beginning, trees are easy to interpret. Furthermore, the
 way trees make predictions is thought to mirror human decision-making. Trees
 can also be displayed graphically - a desirable trait for presentations in real world applications. Despite these advantages, trees suffer from lower prediction accuracy, high variance, and lack of robustness (a small change in the data leads to a big change in the resulting tree). See <a href="/machine_learning/tree_extensions">this article</a> if you are interested in learning about extensions to tree-based methods which address these problems.
