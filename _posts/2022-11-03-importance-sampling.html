@@ -14,20 +14,15 @@ excerpt: "Approximation method by proposing a new distribution"
 {% include mathjax.html %}
 
 <p>
-Importance sampling is an approximation method that aims at proposing a
-new distribution to sample from that has higher density on areas that contribute
-more to the expectation. That was a mouthful. Let’s break that into smaller
-chunks.
+Importance sampling is an approximation method that proposes a
+new sampling distribution with higher density on areas that contribute
+more to the expectation. Despite its name, importance sampling is not a true sampling method;
+it's an <b>approximation method</b> that doesn't involve a sampling process.
 </p>
 
 <p>
-First, let’s quickly get this out of the way: importance sampling is an <b>approximation method</b>, not a sampling method. There is no real sampling
-procedure defined here.
-</p>
-
-<p>
-Great! Now that that’s out of the way, the next thing is to introduce two
-distributions: the <i>target distribution</i> \(p(x)\) and the <i>proposal distribution</i> \(q(x)\).
+Importance sampling introduces two distributions: the <i>target distribution</i>
+\(p(x)\) and the <i>proposal distribution</i> \(q(x)\).
 The target distribution describes the true underlying distribution of the data,
 whereas the proposal distribution is the new distribution we will sample from.
 In importance sampling, we want to control how often we sample certain values.
@@ -36,7 +31,7 @@ more to the expectation. What does this exactly mean?
 </p>
 
 <p>
-Let’s turn our attention to Figure 1. We can see that \(p(x)\) will have trouble
+In Figure 1, we can see that \(p(x)\) will have trouble
 sampling from the right side of \(f(x)\), which is where all the action is happening.
 Meanwhile, \(q(x)\) will do a pretty good job at sampling from the important areas
 (where the action is happening); hence, <b>importance sampling</b>.
