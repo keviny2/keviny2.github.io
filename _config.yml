@@ -58,7 +58,6 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Kevin Yang"
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "Husband and father with interests in data, software, and theology."
   links:
