@@ -58,8 +58,8 @@ plugins:
   - jekyll-include-cache
 
 author:
-  avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Husband and father with interests in data, software, and theology."
+  avatar: "/assets/images/bio-photo.jpg"
+  bio: Data Science. Data Engineering. Bioinformatics. Machine Learning. Software Engineering.
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
